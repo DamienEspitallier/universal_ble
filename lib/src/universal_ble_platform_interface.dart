@@ -50,6 +50,8 @@ abstract class UniversalBlePlatform {
 
   Future<int> requestMtu(String deviceId, int expectedMtu);
 
+  Future<void> requestPriority(String deviceId, BlePriority priority);
+
   Future<bool> isPaired(String deviceId);
 
   Future<bool> pair(String deviceId);

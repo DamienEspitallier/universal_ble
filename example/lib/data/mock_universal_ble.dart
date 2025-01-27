@@ -92,6 +92,11 @@ class MockUniversalBle extends UniversalBlePlatform {
   }
 
   @override
+  Future<void> requestPriority(String deviceId, BlePriority priority) async {
+    
+  }
+
+  @override
   Future<void> setNotifiable(String deviceId, String service,
       String characteristic, BleInputProperty bleInputProperty) async {}
 

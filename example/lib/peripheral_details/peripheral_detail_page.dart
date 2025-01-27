@@ -445,6 +445,15 @@ class _PeripheralDetailPageState extends State<PeripheralDetailPage> {
                               },
                               text: 'Unpair',
                             ),
+                            PlatformButton(
+                                enabled: isConnected,
+                                onPressed: () async {
+                                  await UniversalBle.requestPriority(
+                                      widget.deviceId, BlePriority.high);
+                                  _addLog('set priority high', true);
+                                },
+                                text: 'Set high priority',
+                              ),
                           ],
                         ),
                       ),

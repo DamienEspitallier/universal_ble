@@ -541,6 +541,23 @@ class UniversalBlePlugin : UniversalBlePlatformChannel, BluetoothGattCallback(),
         }
     }
 
+    override fun requestPriority(deviceId: String, priority: Int) {
+        try {
+            val gatt = deviceId.toBluetoothGatt()
+            if(priority == 0) {
+                gatt.requestConnectionPriority(BluetoothGatt.CONNECTION_PRIORITY_LOW_POWER)
+            }
+            else if(priority == 1) {
+                gatt.requestConnectionPriority(BluetoothGatt.CONNECTION_PRIORITY_BALANCED)
+            }
+            else if(priority == 2) {
+                gatt.requestConnectionPriority(BluetoothGatt.CONNECTION_PRIORITY_HIGH)
+            }
+        } catch (e: FlutterError) {
+            
+        }
+    }
+
     override fun onMtuChanged(gatt: BluetoothGatt?, mtu: Int, status: Int) {
         val deviceId = gatt?.device?.address ?: return
         mtuResultFutureList.filter { it.deviceId == deviceId }.forEach {

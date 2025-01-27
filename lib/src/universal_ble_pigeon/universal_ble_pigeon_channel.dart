@@ -115,6 +115,10 @@ class UniversalBlePigeonChannel extends UniversalBlePlatform {
       _channel.requestMtu(deviceId, expectedMtu);
 
   @override
+  Future<void> requestPriority(String deviceId, BlePriority priority) =>
+     _channel.requestPriority(deviceId, priority.index);
+
+  @override
   Future<bool> isPaired(String deviceId) => _channel.isPaired(deviceId);
 
   @override

@@ -234,6 +234,11 @@ class UniversalBleWeb extends UniversalBlePlatform {
   }
 
   @override
+  Future<void> requestPriority(String deviceId, BlePriority priority) {
+    throw UnimplementedError();
+  }
+
+  @override
   Future<bool> isPaired(String deviceId) {
     throw UnimplementedError();
   }

@@ -279,6 +279,7 @@ interface UniversalBlePlatformChannel {
   fun discoverServices(deviceId: String, callback: (Result<List<UniversalBleService>>) -> Unit)
   fun readValue(deviceId: String, service: String, characteristic: String, callback: (Result<ByteArray>) -> Unit)
   fun requestMtu(deviceId: String, expectedMtu: Long, callback: (Result<Long>) -> Unit)
+  fun requestPriority(deviceId: String, priority: Int)
   fun writeValue(deviceId: String, service: String, characteristic: String, value: ByteArray, bleOutputProperty: Long, callback: (Result<Unit>) -> Unit)
   fun isPaired(deviceId: String, callback: (Result<Boolean>) -> Unit)
   fun pair(deviceId: String, callback: (Result<Boolean>) -> Unit)
@@ -499,6 +500,26 @@ interface UniversalBlePlatformChannel {
                 reply.reply(wrapResult(data))
               }
             }
+          }
+        } else {
+          channel.setMessageHandler(null)
+        }
+      }
+      run {
+        val channel = BasicMessageChannel<Any?>(binaryMessenger, "dev.flutter.pigeon.universal_ble.UniversalBlePlatformChannel.requestPriority$separatedMessageChannelSuffix", codec)
+        if (api != null) {
+          channel.setMessageHandler { message, reply ->
+            val args = message as List<Any?>
+            val deviceIdArg = args[0] as String
+            val priority = args[1] as Long
+
+            val wrapped: List<Any?> = try {
+              api.requestPriority(deviceIdArg, priority.toInt())
+              listOf(null)
+            } catch (exception: Throwable) {
+              wrapError(exception)
+            }
+            reply.reply(wrapped)
           }
         } else {
           channel.setMessageHandler(null)

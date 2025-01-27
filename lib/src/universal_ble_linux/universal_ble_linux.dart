@@ -320,6 +320,11 @@ class UniversalBleLinux extends UniversalBlePlatform {
   }
 
   @override
+  Future<void> requestPriority(String deviceId, BlePriority priority) {
+    throw UnimplementedError();
+  }
+
+  @override
   Future<bool> pair(String deviceId) async {
     BlueZDevice device = _findDeviceById(deviceId);
     try {

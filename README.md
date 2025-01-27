@@ -39,6 +39,7 @@ A cross-platform (Android/iOS/macOS/Windows/Linux/Web) Bluetooth Low Energy (BLE
 | enable/disable Bluetooth      |   ✔️    | ❌  |  ❌   |   ✔️    |      ✔️      | ❌  |
 | onAvailabilityChange |   ✔️    | ✔️  |  ✔️   |   ✔️    |      ✔️      | ✔️  |
 | requestMtu           |   ✔️    | ✔️  |  ✔️   |   ✔️    |      ✔️      | ❌  |
+| requestPriority      |   ✔️    | ❌  |  ❌   |   ❌    |      ❌      | ❌  |
 
 ## Getting Started
 

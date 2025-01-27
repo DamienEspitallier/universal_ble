@@ -216,6 +216,15 @@ class UniversalBle {
     );
   }
 
+  /// Request Priority value.
+  /// `requestPriority` is only supported on `Android.
+  static Future<void> requestPriority(String deviceId, BlePriority priority) async {
+    return await _bleCommandQueue.queueCommand(
+      () => _platform.requestPriority(deviceId, priority),
+      deviceId: deviceId,
+    );
+  }
+
   /// Check if a device is paired.
   ///
   /// For Apple and Web, you can optionally pass a pairingCommand if you know an encrypted read or write characteristic.
